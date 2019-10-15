@@ -12,31 +12,27 @@ abline(h=2, col='red')
 dev.off()
 
 png(file = "boxPlotBmi.png")
-boxplot(BMI, BMI2)
-bplot <- boxplot(BMI, BMI2, main="Body mass index")
+boxplot(BMI, BMI2, main="Body mass index")
 abline(h=2, col='red')
 dev.off()
 
 png(file = "boxPlotFat.png")
-boxplot(Fat, Fat2)
-bplot <- boxplot(Fat, Fat2, main="Pourcentage of body fat")
+boxplot(Fat, Fat2, main="Pourcentage of body fat")
 abline(h=2, col='red')
 dev.off()
 
 png(file = "boxPlotWhr.png")
-boxplot(WHR, WHR2)
-bplot <- boxplot(WHR, WHR2, main="Waist-to-hip ratio")
+boxplot(WHR, WHR2, main="Waist-to-hip ratio")
 abline(h=2, col='red')
 dev.off()
 
 png(file = "boxPlotSyst.png")
-boxplot(Syst, Syst2)
-bplot <- boxplot(Syst, Syst2, main="Systolic blood pressure")
+boxplot(Syst, Syst2, main="Systolic blood pressure")
 abline(h=2, col='red')
 dev.off()
 
-boxplot(Diast, Diast2)
-bplot <- boxplot(Diast, Diast2, main="Diastolic blood pressure")
+png(file = "boxPlotDiast.png")
+boxplot(Diast, Diast2, main="Diastolic blood pressure")
 abline(h=2, col='red')
 dev.off()
 
@@ -45,7 +41,7 @@ dev.off()
 zSyst <- scale(Syst)
 # Graph of the z-Score
 png(file = "zScoreSyst.png")
-plot(zSyst, type='h')
+plot(zSyst, type='h', main="z-Score fot systolic blood pressure")
 abline(h=2, col='red')
 dev.off()
 # Histogram 
@@ -57,7 +53,7 @@ hist(Syst)
 zSyst2 <- scale(Syst2)
 # Graph of the z-Score
 png(file = "zScoreSyst2.png")
-plot(zSyst2, type='h')
+plot(zSyst2, type='h', main="z-Score for systolic(2) blood pressure")
 abline(h=2, col='red')
 dev.off()
 # Histogram 
@@ -68,8 +64,8 @@ hist(Syst2)
 # z-Score
 zDiast <- scale(Diast)
 # Graph of the z-Score
-png(file = "zScoreDiast.png")
-plot(zDiast, type='h')
+png(file = "zScoreDiast.png",)
+plot(zDiast, type='h', main="z-Score for diastolic blood pressure")
 abline(h=2, col='red')
 dev.off()
 # Histogram 
@@ -80,10 +76,10 @@ hist(Diast)
 # Boxplot
 boxplot(Diast2) # OUTLIERS
 # z-Score
-zDiast2 <- scale(zDiast2)
+zDiast2 <- scale(Diast2)
 # Graph of the z-Score
 png(file = "zScoreDiast2.png")
-plot(zDiast2, type='h')
+plot(zDiast2, type='h', main="z-Score for diastolic(2) blood pressure")
 abline(h=2, col='red')
 dev.off()
 # Histogram 
@@ -103,7 +99,7 @@ is.outlier   <- rep(FALSE, nrow(hw))
 is.outlier[m.dist.order[1:n.outliers]] <- TRUE
 pch <- is.outlier * 16
 png(file = "mahaSyst.png")
-plot(hw, pch=pch) 
+plot(hw, pch=pch, main="Mahalanobis distance for systolic blood pressure") 
 abline(h=2, col='red')
 dev.off()
 
@@ -115,7 +111,7 @@ is.outlier   <- rep(FALSE, nrow(hw))
 is.outlier[m.dist.order[1:n.outliers]] <- TRUE
 pch <- is.outlier * 16
 png(file = "mahaSyst2.png")
-plot(hw, pch=pch) 
+plot(hw, pch=pch, main="Mahalanobis distance for systolic(2) blood pressure") 
 abline(h=2, col='red')
 dev.off()
 
@@ -127,7 +123,7 @@ is.outlier   <- rep(FALSE, nrow(hw))
 is.outlier[m.dist.order[1:n.outliers]] <- TRUE
 pch <- is.outlier * 16
 png(file = "mahaDiast.png")
-plot(hw, pch=pch) 
+plot(hw, pch=pch, main="Mahalanobis distance for diastolic blood pressure") 
 abline(h=2, col='red')
 dev.off()
 
@@ -139,7 +135,7 @@ is.outlier   <- rep(FALSE, nrow(hw))
 is.outlier[m.dist.order[1:n.outliers]] <- TRUE
 pch <- is.outlier * 16
 png(file = "mahaDiast2.png")
-plot(hw, pch=pch) 
+plot(hw, pch=pch, main="Mahalanobis distance for diastolic(2) blood pressure") 
 abline(h=2, col='red')
 dev.off()
 
