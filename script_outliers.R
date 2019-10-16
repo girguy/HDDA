@@ -90,56 +90,17 @@ data <- na.omit(data)
 n.outliers   <- 4 # Mark as outliers the 4 most extreme points
 
 # Mahalanobis Distance analysis
+data <- read.table("hotel-maids.txt", sep="\t", header=TRUE, na.strings = "NA")
+attach(data)
 
-# Syst
-hw <- data.frame(data$Age, data$Syst)
-#m.dist.order contains ordered indices
-m.dist.order <- order(mahalanobis(hw, colMeans(hw), cov(hw)), decreasing=TRUE)
-is.outlier   <- rep(FALSE, nrow(hw))
-is.outlier[m.dist.order[1:n.outliers]] <- TRUE
-pch <- is.outlier * 16
-png(file = "mahaSyst.png")
-plot(hw, pch=pch, main="Mahalanobis distance for systolic blood pressure") 
-abline(h=2, col='red')
+x <- subset(data, select = -c(Informed, Fat,Fat2, Fat.Ft2,BMI.BM2,Dst.Ds2))
+# Not considering the variable Fat and Fat2 
+xx <- na.omit(x)
+
+m<-colMeans(x,na.rm=TRUE)
+S<-var(x,na.rm=TRUE)
+d<-mahalanobis(x,m,S)
+png(file = "mahaDistance.png")
+plot(d,type="h", main = "Mahalanobis distance")
+abline(h=qchisq(0.95,11), col='red')
 dev.off()
-
-# Syst2
-hw <- data.frame(data$Age, data$Syst2)
-#m.dist.order contains ordered indices
-m.dist.order <- order(mahalanobis(hw, colMeans(hw), cov(hw)), decreasing=TRUE)
-is.outlier   <- rep(FALSE, nrow(hw))
-is.outlier[m.dist.order[1:n.outliers]] <- TRUE
-pch <- is.outlier * 16
-png(file = "mahaSyst2.png")
-plot(hw, pch=pch, main="Mahalanobis distance for systolic(2) blood pressure") 
-abline(h=2, col='red')
-dev.off()
-
-# Diast
-hw <- data.frame(data$Age, data$Diast)
-#m.dist.order contains ordered indices
-m.dist.order <- order(mahalanobis(hw, colMeans(hw), cov(hw)), decreasing=TRUE)
-is.outlier   <- rep(FALSE, nrow(hw))
-is.outlier[m.dist.order[1:n.outliers]] <- TRUE
-pch <- is.outlier * 16
-png(file = "mahaDiast.png")
-plot(hw, pch=pch, main="Mahalanobis distance for diastolic blood pressure") 
-abline(h=2, col='red')
-dev.off()
-
-# Diast2
-hw <- data.frame(data$Age, data$Diast2)
-#m.dist.order contains ordered indices
-m.dist.order <- order(mahalanobis(hw, colMeans(hw), cov(hw)), decreasing=TRUE)
-is.outlier   <- rep(FALSE, nrow(hw))
-is.outlier[m.dist.order[1:n.outliers]] <- TRUE
-pch <- is.outlier * 16
-png(file = "mahaDiast2.png")
-plot(hw, pch=pch, main="Mahalanobis distance for diastolic(2) blood pressure") 
-abline(h=2, col='red')
-dev.off()
-
-
-
-
-
