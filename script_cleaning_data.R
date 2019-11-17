@@ -87,6 +87,8 @@ X_1 <- function_linear_regression(X_1, "Fat2", "Wt2")
 X <- rbind(X_0, X_1)
 colMeans(is.na(X)) # No missing value.
 
+saveRDS(X, file = "dataFinal.Rds")
+
 #Imputated dataset 
 covI <- cov(X)
 corI <- cor(X)
