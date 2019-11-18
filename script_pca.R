@@ -54,3 +54,8 @@ fviz_pca_var(pca.res, col.var = "cos2",
 var <- get_pca_var(pca.res)
 head(var$cor)
 
+# Contributions des variables à PC1
+fviz_contrib(pca.res, choice = "var", axes = 1, top = 13)
+# Contributions des variables à PC2
+fviz_contrib(pca.res, choice = "var", axes = 2, top = 13)
+
